@@ -1,26 +1,24 @@
 FROM stencila/executa-midi
 USER root
 
-# Download miniconda https://stackoverflow.com/questions/58269375/how-to-install-packages-with-miniconda-in-dockerfile
-ENV PATH=/root/miniconda3/bin:$PATH
-ARG PATH=/root/miniconda3/bin:$PATH
-RUN apt-get update
+# Install Python dependencies
+RUN python3 -m pip install -r requirements.txt
 
-RUN apt-get install -y wget && rm -rf /var/lib/apt/lists/*
+# Install R depedencies
+FROM rocker/r-apt:bionic
+RUN apt-get update && \
+  apt-get install -y libxml2-dev
 
-RUN wget \
-    https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh
+# Install binaries (see https://datawookie.netlify.com/blog/2019/01/docker-images-for-r-r-base-versus-r-apt/)
+COPY ./requirements-bin.txt .
+RUN cat requirements-bin.txt | xargs apt-get install -y -qq
 
-# Add the conda lotus_stencila_env to the container
-ENV CONDA_ENV lotus_stencila_env
-COPY lotus_stencila_env.yml /tmp/$CONDA_ENV.yml
-RUN conda env create -q -f /tmp/lotus_stencila_env.yml -n $CONDA_ENV
-SHELL ["/bin/bash", "-c"]
-RUN conda init
-RUN echo 'conda activate lotus_stencila_env' >> ~/.bashrc
+# Install remaining packages from source
+RUN Rscript -e 'install.packages(c("ggalluvial","ggstar","readr>=2.0.1"))'
+RUN Rscript -e 'BiocManager::install(c("ggtree","ggtreeextra"))'
+
+# Clean up package registry
+RUN rm -rf /var/lib/apt/lists/*
 
 # Go back to guest to run the container
 USER guest

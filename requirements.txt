@@ -1,0 +1,10 @@
+cmcrameri
+faerun
+pandas
+rdkit
+scipy
+matplotlib
+mhfp
+rpy2
+git+https://github.com/reymond-group/map4
+https://test.pypi.org/simple/ tmap==1.0.8

@@ -14,7 +14,7 @@ COPY ./requirements-bin.txt .
 RUN cat requirements-bin.txt | xargs apt-get install -y -qq
 
 # Install remaining packages from source
-RUN Rscript -e 'install.packages(c("ggalluvial","ggstar","readr>=2.0.1"))'
+RUN Rscript -e 'install.packages(c("ggalluvial","ggstar","parallel","readr>=2.0.1"))'
 RUN Rscript -e 'BiocManager::install(c("ggtree","ggtreeextra"))'
 
 # Clean up package registry

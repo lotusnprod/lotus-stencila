@@ -5,6 +5,8 @@ r-cran-forcats
 r-cran-ggfittext
 r-cran-ggnewscale
 r-cran-ggplot2
+r-cran-pbmcapply
+r-cran-philentropy
 r-cran-plotly
 r-cran-rotl
 r-cran-splitstackshape

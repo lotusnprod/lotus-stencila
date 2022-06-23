@@ -580,7 +580,7 @@ described in the Data Interaction section. The overall process leading
 to referenced and curated structure-organisms pairs is illustrated in
 [Figure 1](#fig1) and detailed hereafter.
 
-chunk: Figure 1.
+figure: Figure 1.
 :::
 ![fig1](https://upload.wikimedia.org/wikipedia/commons/d/da/Lotus_initiative_1_blueprint.svg)
 
@@ -679,7 +679,9 @@ InChIKey, the organism to a valid taxonomic name and the reference to a
 DOI, thereby completing the establishment of the essential referenced
 structure-organism pair.
 
-table: Table 1. ::: \### Example of a referenced structure-organism pair
+table: Table 1. 
+::: 
+### Example of a referenced structure-organism pair
 before and after curation.
 
 |                     | Structure                   | Organism                                                                    | Reference                                                                                                                              |
@@ -687,7 +689,8 @@ before and after curation.
 | **Before curation** | Cyathocaline                | Stem bark of Cyathocalyx zeylanica CHAMP. ex HOOK. f. & THOMS. (Annonaceae) | Wijeratne E. M. K., de Silva L. B., Kikuchi T., Tezuka Y., Gunatilaka A. A. L., Kingston D. G. I., J. Nat. Prod., 58, 459--462 (1995). |
 | **After curation**  | VFIIVOHWCNHINZ-UHFFFAOYSA-N | Cyathocalyx zeylanicus                                                      | 10.1021 /NP50117A020                                                                                                                   |
 
-::: {#table1}
+:::
+{#table1}
 
 Challenging examples encountered during the development of the curation
 process were compiled in an edge cases table
@@ -699,7 +702,7 @@ illustrates the individual contribution of each *source* and *original
 subcategory* that led to the *processed categories*: structure,
 organism, and reference.
 
-chunk: Figure 2.
+figure: Figure 2.
 :::
 ![fig2](https://upload.wikimedia.org/wikipedia/commons/2/25/Lotus_initiative_1_alluvial_plot.svg)
 
@@ -829,7 +832,7 @@ biological organisms reported to contain this NP ([Figure 3](#fig3)).
 Clicking the reference link under each taxon name links to the
 publication(s) documenting the occurrence.
 
-chunk: Figure 3. 
+figure: Figure 3. 
 ::: ![fig3](images/erysodine.svg)
 
 ### Illustration of the 'found in taxon' statement section on the Wikidata page
@@ -848,7 +851,9 @@ demonstrating what can be done using this approach. The full-text
 queries with explanations are included in [Supplementary file
 1](#supp1).
 
-table: Table 2. ::: \### Potential questions about structure-organism
+table: Table 2. 
+::: 
+### Potential questions about structure-organism
 relationships and corresponding Wikidata queries.
 
 | Question                                                                                                                                  | Wikidata SPARQL query |
@@ -865,7 +870,8 @@ relationships and corresponding Wikidata queries.
 | Which compounds labeled as terpenoids were found in *Aspergillus* species, between 2010 and 2020, with related references?                | <https://w.wiki/4VGD> |
 | Which are the available referenced structure-organism pairs on Wikidata? (example limited to 1000 results)                                | <https://w.wiki/4VFh> |
 
-::: {#table2}
+:::
+{#table2}
 
 The queries presented in [Table 2](#table2) are only selected examples,
 and many other ways of interrogating LOTUS can be formulated. Generic
@@ -1318,7 +1324,9 @@ domain |>
 knitr::kable()
 ```
 
-table: Table 3. ::: \### Distribution and specificity of chemical
+table: Table 3. 
+::: 
+### Distribution and specificity of chemical
 structures across four important NP reservoirs: plants, fungi, animals,
 and bacteria.
 
@@ -1333,7 +1341,8 @@ attributed with NPClassifier.
 | **Animalia** | 2,716     | 24,114                      | 15,242                 | 11,822 (78%)                    | 455              | 14 (3%)                   |
 | **Bacteria** | 1,555     | 23,198                      | 15,895                 | 14,130 (89%)                    | 385              | 43 (11%)                  |
 
-::: {#table3}
+:::
+{#table3}
 
 ## Distributions of organisms per structure and structures per organism
 
@@ -1380,7 +1389,7 @@ knowledge graphs offers exciting perspectives regarding the
 possibilities to expand both the chemical and biological coverage of the
 LOTUS data in a feasible manner.
 
-chunk: Figure 4. 
+figure: Figure 4. 
 :::
 ![fig4](https://upload.wikimedia.org/wikipedia/commons/2/2a/Lotus_initiative_1_structure_organism_distribution.svg)
 
@@ -1395,6 +1404,7 @@ contain more than 80% of the structural diversity present within LOTUS.
 In parallel, 80% of the species present in LOTUS are linked to less than
 10% of the structures. The figure is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg>.
+
 :::
 {#fig4}
 
@@ -1410,7 +1420,7 @@ ensemble of taxa reported to contain the planar structure of the widely
 occurring triterpenoid *β*-sitosterol
 ([Q121802](https://www.wikidata.org/wiki/Q121802)).
 
-chunk: Figure 5.
+figure: Figure 5.
 :::
 ![fig5](https://upload.wikimedia.org/wikipedia/commons/c/c9/Lotus_initiative_1_upset_plot.svg)
 
@@ -1472,7 +1482,7 @@ and their corresponding location in the TMAP.
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
 
-chunk: Figure 6.
+figure: Figure 6.
 :::
 ![fig6](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lotus_initiative_1_biologically_interpreted_chemical_tree.svg)
 
@@ -1498,6 +1508,7 @@ available at <https://lotus.nprod.net/post/lotus-tmap/> and archived at
 <https://doi.org/10.5281/zenodo.5801807>!number(0)[@bib101]. The figure
 is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_biologically_interpreted_chemical_tree.svg>.
+
 :::
 {#fig6}
 
@@ -1542,7 +1553,7 @@ index](https://en.wikipedia.org/wiki/Jaccard_index) between the chemical
 class and the biological family. For more details, see
 [4_visualizing/plot_magicTree.R](https://github.com/lotusnprod/lotus-processor/blob/main/src/4_visualizing/plot_magicTree.R).
 
-chunk: Figure 7.
+figure: Figure 7.
 :::
 ![fig7](https://upload.wikimedia.org/wikipedia/commons/a/a9/Lotus_initiative_1_chemically_interpreted_biological_tree.svg)
 
@@ -1561,10 +1572,11 @@ corresponds to the number of genera reported in the family. The figure
 is vectorized and zoomable for detailed inspection and is available
 under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_chemically_interpreted_biological_tree.svg>.
+
 :::
 {#fig7}
 
-chunk: Figure 7 supplement. 
+figure: Figure 7 supplement. 
 :::
 ![fig7s1](https://upload.wikimedia.org/wikipedia/commons/3/3b/Lotus_initiative_1_chemically_interpreted_biological_tree_supplement.svg)
 
@@ -1575,6 +1587,7 @@ Script used for the generation of each tree in the figure is the same
 as for [Figure 7](#fig7) as both figures are related. The figure is
 available under CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_chemically_interpreted_biological_tree_supplement.svg>
+
 :::
 {#fig7s1}
 
@@ -1881,73 +1894,79 @@ and its chemistry*.
 
 # Materials and methods
 
-table: Key resources table ::: \| Reagent type (species) or resource \|
-Designation \| Source or reference \| Identifiers \| Additional
-information \| \| ---------------------------------- \|
------------------------------------ \|
+table: Key resources table. 
+::: 
+### Key resources table
+
+| Reagent type (species) or resource |
+Designation | Source or reference | Identifiers | Additional
+information | | ---------------------------------- |
+----------------------------------- |
 ------------------------------------------------------------------------------
-\|
+|
 ------------------------------------------------------------------------------------------------------------------------
-\|
+|
 --------------------------------------------------------------------------------------------
-\| \| Software, algorithm \| Lotus-processor code \| This work
-(<https://github.com/lotusnprod/lotus-processor>, [@bib108]) \| \|
-Archived at <https://doi.org/10.5281/zenodo.5802107> \| \| Software,
-algorithm \| Lotus-web code \| This work
-(<https://github.com/lotusnprod/lotus-web>, [@bib109]) \| \| Archived at
-<https://doi.org/10.5281/zenodo.5802119> \| \| Software, algorithm \|
-Lotus-wikidata-interact code \| This work
-(<https://github.com/lotusnprod/lotus-wikidata-interact>, [@bib110]) \|
-\| Archived at <https://doi.org/10.5281/zenodo.5802113> \| \| Software,
-algorithm \| Global Names Architeture \| <https://globalnames.org> \|
-QID:[Q65691453](https://www.wikidata.org/wiki/Q65691453) \| See
-Additional executable files \| \| Software, algorithm \| Java \|
-<https://www.java.com> \| QID:[Q251](https://www.wikidata.org/wiki/Q251)
-\| \| \| Software, algorithm \| Kotlin \| <https://kotlinlang.org> \|
-QID:[Q3816639](https://www.wikidata.org/wiki/Q3816639) \| See Kotlin
-packages \| \| Software, algorithm \| Manubot \| <https://manubot.org>
-\| QID:[Q96473455](https://www.wikidata.org/wiki/Q96473455)
-RRID:[SCR_018553](https://identifiers.org/RRID/RRID:SCR_018553) \|
+| | Software, algorithm | Lotus-processor code | This work
+(<https://github.com/lotusnprod/lotus-processor>, [@bib108]) | |
+Archived at <https://doi.org/10.5281/zenodo.5802107> | | Software,
+algorithm | Lotus-web code | This work
+(<https://github.com/lotusnprod/lotus-web>, [@bib109]) | | Archived at
+<https://doi.org/10.5281/zenodo.5802119> | | Software, algorithm |
+Lotus-wikidata-interact code | This work
+(<https://github.com/lotusnprod/lotus-wikidata-interact>, [@bib110]) |
+| Archived at <https://doi.org/10.5281/zenodo.5802113> | | Software,
+algorithm | Global Names Architeture | <https://globalnames.org> |
+QID:[Q65691453](https://www.wikidata.org/wiki/Q65691453) | See
+Additional executable files | | Software, algorithm | Java |
+<https://www.java.com> | QID:[Q251](https://www.wikidata.org/wiki/Q251)
+| | | Software, algorithm | Kotlin | <https://kotlinlang.org> |
+QID:[Q3816639](https://www.wikidata.org/wiki/Q3816639) | See Kotlin
+packages | | Software, algorithm | Manubot | <https://manubot.org>
+| QID:[Q96473455](https://www.wikidata.org/wiki/Q96473455)
+RRID:[SCR_018553](https://identifiers.org/RRID/RRID:SCR_018553) |
 Repository available at <https://github.com/lotusnprod/lotus-manuscript>
-\| \| Software, algorithm \| NPClassifier \|
-<https://npclassifier.ucsd.edu> \| \| See
-<https://doi.org/10.1021/acs.jnatprod.1c00399> \| \| Software, algorithm
-\| OPSIN \| <https://github.com/dan2097/opsin> \|
-QID:[Q26481302](https://www.wikidata.org/wiki/Q26481302) \| See
-Additional executable files \| \| Software, algorithm \| Python
-Programming Language \| <https://www.python.org> \|
+| | Software, algorithm | NPClassifier |
+<https://npclassifier.ucsd.edu> | | See
+<https://doi.org/10.1021/acs.jnatprod.1c00399> | | Software, algorithm
+| OPSIN | <https://github.com/dan2097/opsin> |
+QID:[Q26481302](https://www.wikidata.org/wiki/Q26481302) | See
+Additional executable files | | Software, algorithm | Python
+Programming Language | <https://www.python.org> |
 QID:[Q28865](https://www.wikidata.org/wiki/Q28865)
-RRID:[SCR_008394](https://identifiers.org/RRID/RRID:SCR_008394) \| See
-Python packages \| \| Software, algorithm \| R Project for Statistical
-Computing \| <https://www.r-project.org> \|
+RRID:[SCR_008394](https://identifiers.org/RRID/RRID:SCR_008394) | See
+Python packages | | Software, algorithm | R Project for Statistical
+Computing | <https://www.r-project.org> |
 QID:[Q206904](https://www.wikidata.org/wiki/Q206904)
-RRID:[SCR_001905](https://identifiers.org/RRID/RRID:SCR_001905) \| See R
-packages \| \| Software, algorithm \| Molconvert \|
-<https://docs.chemaxon.com/display/docs/molconvert.md> \|
-QID:[Q55377678](https://www.wikidata.org/wiki/Q55377678) \| See Chemical
-structures \| \| Software, algorithm \| Wikidata \|
-<https://www.wikidata.org> \|
+RRID:[SCR_001905](https://identifiers.org/RRID/RRID:SCR_001905) | See R
+packages | | Software, algorithm | Molconvert |
+<https://docs.chemaxon.com/display/docs/molconvert.md> |
+QID:[Q55377678](https://www.wikidata.org/wiki/Q55377678) | See Chemical
+structures | | Software, algorithm | Wikidata |
+<https://www.wikidata.org> |
 QID:[Q2013](https://www.wikidata.org/wiki/Q2013)
-RRID:[SCR_018492](https://identifiers.org/RRID/RRID:SCR_018492) \|
+RRID:[SCR_018492](https://identifiers.org/RRID/RRID:SCR_018492) |
 Project page
 <https://www.wikidata.org/wiki/Wikidata:WikiProject_Chemistry/Natural_products>
-\| \| Other \| Lotus custom dictionaries \| This work \| \| Archived at
-<https://doi.org/10.5281/zenodo.5801798> \| \| Other \| Chemical
-identifier resolver \| <https://cactus.nci.nih.gov/chemical/structure>
-\| \| See Chemical structures \| \| Other \| CrossRef \|
-<https://www.crossref.org> \|
+| | Other | Lotus custom dictionaries | This work | | Archived at
+<https://doi.org/10.5281/zenodo.5801798> | | Other | Chemical
+identifier resolver | <https://cactus.nci.nih.gov/chemical/structure>
+| | See Chemical structures | | Other | CrossRef |
+<https://www.crossref.org> |
 QID:[Q5188229](https://www.wikidata.org/wiki/Q5188229)
-RRID:[SCR_003217](https://identifiers.org/RRID/RRID:SCR_003217) \| See
-References \| \| Other \| PubChem \| <https://pubchem.ncbi.nlm.nih.gov>
-\| QID:[Q278487](https://www.wikidata.org/wiki/Q278487)
-RRID:[SCR_004284](https://identifiers.org/RRID/RRID:SCR_004284) \| LOTUS
-data <https://pubchem.ncbi.nlm.nih.gov/source/25132> \| \| Other \|
-PubMed \| <https://pubmed.ncbi.nlm.nih.gov> \|
+RRID:[SCR_003217](https://identifiers.org/RRID/RRID:SCR_003217) | See
+References | | Other | PubChem | <https://pubchem.ncbi.nlm.nih.gov>
+| QID:[Q278487](https://www.wikidata.org/wiki/Q278487)
+RRID:[SCR_004284](https://identifiers.org/RRID/RRID:SCR_004284) | LOTUS
+data <https://pubchem.ncbi.nlm.nih.gov/source/25132> | | Other |
+PubMed | <https://pubmed.ncbi.nlm.nih.gov> |
 QID:[Q180686](https://www.wikidata.org/wiki/Q180686)
-RRID:[SCR_004846](https://identifiers.org/RRID/RRID:SCR_004846) \| See
-References \| \| Other \| Taxonomic data sources \|
-<https://resolver.globalnames.org/data_sources> \| \| See Translation \|
-\| Other \| Natural Products data sources \| \| \| See Appendix 1 \| :::
+RRID:[SCR_004846](https://identifiers.org/RRID/RRID:SCR_004846) | See
+References | | Other | Taxonomic data sources |
+<https://resolver.globalnames.org/data_sources> | | See Translation |
+| Other | Natural Products data sources | | | See Appendix 1 | 
+
+:::
 {#keyresource}
 
 ## Data gathering

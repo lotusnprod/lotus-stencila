@@ -12,11 +12,10 @@ WORKDIR /home/guest
 # dockta
 
 # This section copies package requirement files into the image
-COPY . .
+COPY R/check_and_load_packages.R R/check_and_load_packages.R
 
 # This section runs commands to install the packages specified in the requirement file/s
-RUN pip3 install --requirement requirements.txt \
- &&  bash -c "Rscript packages.R"
+RUN bash -c "Rscript packages.R"
 
 # This sets the default user when the container is run
 USER guest

@@ -12,10 +12,7 @@ WORKDIR /home/guest
 # dockta
 
 # This section copies package requirement files into the image
-COPY requirements.txt requirements.txt
-COPY packages.R packages.R
-COPY R/check_and_load_packages.R R/check_and_load_packages.R
-COPY R/log_debug.R R/log_debug.R
+COPY . .
 
 # This section runs commands to install the packages specified in the requirement file/s
 RUN pip3 install --requirement requirements.txt \

@@ -1171,6 +1171,8 @@ three others, they were counted as 'specific'. Chemical classes were
 attributed with NPClassifier.
 
 ```{r include=FALSE}
+#' @width 12
+#' @height 10
 start <- Sys.time()
 
 library(dplyr)
@@ -1506,6 +1508,8 @@ is available under the CC0 license at
 chunk: Figure 6-1.
 :::
 ```{r echo=FALSE}
+#' @width 12
+#' @height 10
 library(knitr)
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```

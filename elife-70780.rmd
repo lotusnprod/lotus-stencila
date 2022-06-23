@@ -220,16 +220,12 @@ description:
   the ultimate goal of the newly established LOTUS initiative, which has now completed
   the first steps toward the harmonization, curation, validation and open dissemination
   of 750,000+ referenced structure-organism pairs. LOTUS data is hosted on Wikidata
-  and regularly mirrored on '
-- . Data sharing within the Wikidata framework broadens data access and interoperability,
+  and regularly mirrored on <https://lotus.naturalproducts.net>. Data sharing within the Wikidata framework broadens data access and interoperability,
   opening new possibilities for community curation and evolving publication models.
   Furthermore, embedding LOTUS data into the vast Wikidata knowledge graph will facilitate
   new biological and chemical insights. The LOTUS initiative represents an important
   advancement in the design and deployment of a comprehensive and collaborative natural
-  products knowledge base.
-- content: https://lotus.naturalproducts.net
-  target: https://lotus.naturalproducts.net
-  type: Link
+  products knowledge base.'
 editors:
 - affiliations:
   - name: Ecuador
@@ -1164,6 +1160,16 @@ details of this process are available under
 When the chemical structure/class was reported only in one taxonomic
 grouping, it was counted as 'specific'.
 
+chunk: Table 3. 
+::: 
+### Distribution and specificity of chemical
+structures across four important NP reservoirs: plants, fungi, animals,
+and bacteria.
+
+When the chemical structure/class appeared only in one group and not the
+three others, they were counted as 'specific'. Chemical classes were
+attributed with NPClassifier.
+
 ```{r include=FALSE}
 start <- Sys.time()
 
@@ -1334,24 +1340,6 @@ library(knitr)
 domain |>
 knitr::kable()
 ```
-
-table: Table 3. 
-::: 
-### Distribution and specificity of chemical
-structures across four important NP reservoirs: plants, fungi, animals,
-and bacteria.
-
-When the chemical structure/class appeared only in one group and not the
-three others, they were counted as 'specific'. Chemical classes were
-attributed with NPClassifier.
-
-| Group        | Organisms | 2D Structure-Organism pairs | 2D chemical structures | Specific 2D chemical structures | Chemical classes | Specific chemical classes |
-|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
-| **Plantae**  | 28,439    | 342,891                     | 95,191                 | 90,672 (95%)                    | 545              | 59 (11%)                  |
-| **Fungi**    | 4,003     | 36,950                      | 22,594                 | 20,194 (89%)                    | 417              | 19 (5%)                   |
-| **Animalia** | 2,716     | 24,114                      | 15,242                 | 11,822 (78%)                    | 455              | 14 (3%)                   |
-| **Bacteria** | 1,555     | 23,198                      | 15,895                 | 14,130 (89%)                    | 385              | 43 (11%)                  |
-
 :::
 {#table3}
 
@@ -1489,10 +1477,6 @@ mapped, with examples of a quassinoid (NXZXPYYKGQCDRO) (light green
 star) and a stigmastane steroid (KZJWDPNRJALLNS) (dark green diamond)
 and their corresponding location in the TMAP.
 
-```{r echo=FALSE}
-knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
-```
-
 figure: Figure 6.
 :::
 ![fig6](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lotus_initiative_1_biologically_interpreted_chemical_tree.svg)
@@ -1520,6 +1504,14 @@ available at <https://lotus.nprod.net/post/lotus-tmap/> and archived at
 is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_biologically_interpreted_chemical_tree.svg>.
 
+:::
+{#fig6}
+
+chunk: Figure 6-1.
+:::
+```{r echo=FALSE}
+knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
+```
 :::
 {#fig6}
 

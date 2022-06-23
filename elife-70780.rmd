@@ -220,7 +220,7 @@ description:
   the ultimate goal of the newly established LOTUS initiative, which has now completed
   the first steps toward the harmonization, curation, validation and open dissemination
   of 750,000+ referenced structure-organism pairs. LOTUS data is hosted on Wikidata
-  and regularly mirrored on <https://lotus.naturalproducts.net>. Data sharing within the Wikidata framework broadens data access and interoperability,
+  and regularly mirrored on https://lotus.naturalproducts.net. Data sharing within the Wikidata framework broadens data access and interoperability,
   opening new possibilities for community curation and evolving publication models.
   Furthermore, embedding LOTUS data into the vast Wikidata knowledge graph will facilitate
   new biological and chemical insights. The LOTUS initiative represents an important

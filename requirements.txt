@@ -2,10 +2,11 @@
 cmcrameri
 faerun
 pandas
-rdkit
-scipy
 matplotlib
 mhfp
+numpy
+rdkit
+scipy
 rpy2
 git+https://github.com/reymond-group/map4
 tmap==1.0.8

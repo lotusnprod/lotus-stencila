@@ -4,7 +4,7 @@ source("r/get_jsd.R")
 
 message("counting occurrences")
 table <- lotus
-table_counted <- lotus |> 
+table_counted <- lotus |>
   dplyr::select(
     structure_smiles_2D,
     structure_taxonomy_npclassifier_01pathway,
@@ -100,7 +100,7 @@ message("... at the biological genus level")
 bio_level <- "organism_taxonomy_08genus"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 class_1 <- invisible(pbmcapply::pbmclapply(
@@ -114,7 +114,7 @@ message("... at the biological family level")
 bio_level <- "organism_taxonomy_06family"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 class_2 <- invisible(pbmclapply(
@@ -131,7 +131,7 @@ message("... at the biological kingdom level")
 bio_level <- "organism_taxonomy_02kingdom"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 class_3 <- invisible(pbmclapply(
@@ -159,7 +159,7 @@ message("... at the biological genus level")
 bio_level <- "organism_taxonomy_08genus"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 superclass_1 <- invisible(pbmclapply(
@@ -173,7 +173,7 @@ message("... at the biological family level")
 bio_level <- "organism_taxonomy_06family"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 superclass_2 <- invisible(pbmclapply(
@@ -190,7 +190,7 @@ message("... at the biological kingdom level")
 bio_level <- "organism_taxonomy_02kingdom"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 superclass_3 <- invisible(pbmclapply(
@@ -218,7 +218,7 @@ message("... at the biological genus level")
 bio_level <- "organism_taxonomy_08genus"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 pathway_1 <- invisible(pbmclapply(
@@ -235,7 +235,7 @@ message("... at the biological family level")
 bio_level <- "organism_taxonomy_06family"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 pathway_2 <- invisible(pbmclapply(
@@ -252,7 +252,7 @@ message("... at the biological kingdom level")
 bio_level <- "organism_taxonomy_02kingdom"
 Y <-
   unique(table_counted[, chem_level][!is.na(table_counted[, chem_level]) &
-                                       !is.na(table_counted[, bio_level])])
+    !is.na(table_counted[, bio_level])])
 X <- seq_along(Y)
 
 pathway_3 <- invisible(pbmclapply(

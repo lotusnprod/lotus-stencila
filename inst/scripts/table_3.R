@@ -4,7 +4,7 @@ TAX_LEVEL_1 <- "organism_taxonomy_01domain"
 TAX_LEVEL_2 <- "organism_taxonomy_02kingdom"
 
 message("Formatting the LOTUS")
-domain_unique <- lotus  |>
+domain_unique <- lotus |>
   dplyr::select(
     structure_inchikey,
     structure_inchikey_2D,
@@ -14,32 +14,38 @@ domain_unique <- lotus  |>
     structure_taxonomy_npclassifier_03class,
     organism_taxonomy_01domain,
     organism_taxonomy_02kingdom
-  ) |> 
+  ) |>
   dplyr::filter(!is.na(!!as.name(TAX_LEVEL_1)) |
-                  !is.na(!!as.name(TAX_LEVEL_2)))  |>
-  dplyr::distinct(structure_inchikey_2D, organism_name, .keep_all = TRUE)  |>
-  splitstackshape::cSplit(splitCols = "structure_taxonomy_npclassifier_01pathway",
-                          sep = "|",
-                          direction = "long")  |>
-  splitstackshape::cSplit(splitCols = "structure_taxonomy_npclassifier_02superclass",
-                          sep = "|",
-                          direction = "long")  |>
-  splitstackshape::cSplit(splitCols = "structure_taxonomy_npclassifier_03class",
-                          sep = "|",
-                          direction = "long")  |>
+    !is.na(!!as.name(TAX_LEVEL_2))) |>
+  dplyr::distinct(structure_inchikey_2D, organism_name, .keep_all = TRUE) |>
+  splitstackshape::cSplit(
+    splitCols = "structure_taxonomy_npclassifier_01pathway",
+    sep = "|",
+    direction = "long"
+  ) |>
+  splitstackshape::cSplit(
+    splitCols = "structure_taxonomy_npclassifier_02superclass",
+    sep = "|",
+    direction = "long"
+  ) |>
+  splitstackshape::cSplit(
+    splitCols = "structure_taxonomy_npclassifier_03class",
+    sep = "|",
+    direction = "long"
+  ) |>
   dplyr::filter(!is.na(structure_inchikey_2D) &
-                  !is.na(organism_name)) |>
+    !is.na(organism_name)) |>
   dplyr::mutate(Group = paste(
     organism_taxonomy_01domain,
     organism_taxonomy_02kingdom,
     sep = "_"
-  ))  |>
+  )) |>
   dplyr::filter(
     Group == "Eukaryota_Archaeplastida" |
       Group == "Eukaryota_Fungi" |
       Group == "Eukaryota_Metazoa" |
       Group == "Bacteria_NA"
-  )  |>
+  ) |>
   dplyr::mutate(
     Group = dplyr::if_else(
       condition = Group == "Eukaryota_Archaeplastida",
@@ -58,31 +64,39 @@ domain_unique <- lotus  |>
 
 message("Counting...")
 message("... organisms")
-domain_unique_organisms <- domain_unique  |>
-  dplyr::distinct(organism_name, Group)  |>
+domain_unique_organisms <- domain_unique |>
+  dplyr::distinct(organism_name, Group) |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "Organisms",
-               sort = TRUE)
+  dplyr::count(
+    name = "Organisms",
+    sort = TRUE
+  )
 
 message("... pairs")
 domain_unique_pairs <- domain_unique |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "2D Structure-Organism Pairs",
-               sort = TRUE)
+  dplyr::count(
+    name = "2D Structure-Organism Pairs",
+    sort = TRUE
+  )
 
 message("... 2D structures")
 domain_unique_structures_2D <- domain_unique |>
   dplyr::distinct(Group, structure_inchikey_2D) |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "2D Chemical Structures",
-               sort = TRUE)
+  dplyr::count(
+    name = "2D Chemical Structures",
+    sort = TRUE
+  )
 
 message("... chemical classes")
 domain_unique_classes <- domain_unique |>
   dplyr::distinct(Group, structure_taxonomy_npclassifier_03class) |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "Chemical Classes",
-               sort = TRUE)
+  dplyr::count(
+    name = "Chemical Classes",
+    sort = TRUE
+  )
 
 message("... specific 2D structures")
 domain_unique_structures_2D_specific <- domain_unique |>
@@ -92,8 +106,10 @@ domain_unique_structures_2D_specific <- domain_unique |>
   dplyr::filter(n == 1) |>
   dplyr::ungroup() |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "Specific 2D Chemical Structures",
-               sort = TRUE)
+  dplyr::count(
+    name = "Specific 2D Chemical Structures",
+    sort = TRUE
+  )
 
 message("... specific chemical classes")
 domain_unique_classes_specific <- domain_unique |>
@@ -103,8 +119,10 @@ domain_unique_classes_specific <- domain_unique |>
   dplyr::filter(n == 1) |>
   dplyr::ungroup() |>
   dplyr::group_by(Group) |>
-  dplyr::count(name = "Specific Chemical Classes",
-               sort = TRUE)
+  dplyr::count(
+    name = "Specific Chemical Classes",
+    sort = TRUE
+  )
 
 message("Joining everything together")
 domain <-

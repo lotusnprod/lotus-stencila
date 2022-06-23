@@ -580,7 +580,8 @@ described in the Data Interaction section. The overall process leading
 to referenced and curated structure-organisms pairs is illustrated in
 [Figure 1](#fig1) and detailed hereafter.
 
-figure: Figure 1. :::
+chunk: Figure 1.
+:::
 ![fig1](https://upload.wikimedia.org/wikipedia/commons/d/da/Lotus_initiative_1_blueprint.svg)
 
 ### Blueprint of the LOTUS initiative.
@@ -591,7 +592,8 @@ incorporate future contributions (5), either by the addition of new data
 from within Wikidata (**a**) or new sources (**b**) or via curation of
 existing data (**c**). The figure is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_blueprint.svg>.
-::: {#fig1}
+:::
+{#fig1}
 
 By design, this iterative process fosters community participation,
 essential to efficiently document NP occurrences. All stages of the
@@ -697,7 +699,8 @@ illustrates the individual contribution of each *source* and *original
 subcategory* that led to the *processed categories*: structure,
 organism, and reference.
 
-figure: Figure 2. :::
+chunk: Figure 2.
+:::
 ![fig2](https://upload.wikimedia.org/wikipedia/commons/2/25/Lotus_initiative_1_alluvial_plot.svg)
 
 ### Alluvial plot of the data transformation flow within LOTUS during the automated curation and validation processes.
@@ -710,7 +713,8 @@ subcategory' block, middle) and the validated data after curation
 represented in green, rejected entries in blue. The figure is available
 under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_alluvial_plot.svg>.
-::: {#fig2}
+:::
+{#fig2}
 
 The figure highlights, for example, the essential contribution of the
 reference DOI category to the final validated entries. A similar pattern
@@ -825,13 +829,16 @@ biological organisms reported to contain this NP ([Figure 3](#fig3)).
 Clicking the reference link under each taxon name links to the
 publication(s) documenting the occurrence.
 
-figure: Figure 3. ::: ![fig3](images/erysodine.svg)
+chunk: Figure 3. 
+::: ![fig3](images/erysodine.svg)
 
 ### Illustration of the 'found in taxon' statement section on the Wikidata page
 
 of erysodine [Q27265641](https://www.wikidata.org/wiki/Q27265641)
 showing a selection of erysodine-containing taxa and the references
-documenting these occurrences. ::: {#fig3}
+documenting these occurrences. 
+::: 
+{#fig3}
 
 The typical approach to more elaborated querying involves writing SPARQL
 queries using the [Wikidata Query Service](https://query.wikidata.org)
@@ -1307,7 +1314,7 @@ message("Table calculated in ", format(end - start))
 ```
 
 ```{r echo=FALSE}
-domain|>
+domain |>
 knitr::kable()
 ```
 
@@ -1373,7 +1380,8 @@ knowledge graphs offers exciting perspectives regarding the
 possibilities to expand both the chemical and biological coverage of the
 LOTUS data in a feasible manner.
 
-figure: Figure 4. :::
+chunk: Figure 4. 
+:::
 ![fig4](https://upload.wikimedia.org/wikipedia/commons/2/2a/Lotus_initiative_1_structure_organism_distribution.svg)
 
 ### Distribution of 'structures per organism' and 'organisms per structure'.
@@ -1387,7 +1395,8 @@ contain more than 80% of the structural diversity present within LOTUS.
 In parallel, 80% of the species present in LOTUS are linked to less than
 10% of the structures. The figure is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg>.
-::: {#fig4}
+:::
+{#fig4}
 
 ## Contribution of individual electronic NP resources to LOTUS
 
@@ -1401,7 +1410,8 @@ ensemble of taxa reported to contain the planar structure of the widely
 occurring triterpenoid *β*-sitosterol
 ([Q121802](https://www.wikidata.org/wiki/Q121802)).
 
-figure: Figure 5. :::
+chunk: Figure 5.
+:::
 ![fig5](https://upload.wikimedia.org/wikipedia/commons/c/c9/Lotus_initiative_1_upset_plot.svg)
 
 ### UpSet plots of the individual contribution of electronic NP resources to the planar structures found in *Arabidopsis thaliana* (**A**) and to organisms reported to contain the planar structure of β-sitosterol (KZJWDPNRJALLNS) (**B**).
@@ -1417,7 +1427,8 @@ and NAPRALERT, whereas each of them respectively reports 1349 and 2330
 organisms containing the planar structure of β-sitosterol. The figure is
 available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_upset_plot.svg>.
-::: {#fig5}
+:::
+{#fig5}
 
 [Figure 5A](#fig5) also shows that according to NPClassifier, the
 'chemical pathway' category distribution across electronic NP resources
@@ -1461,7 +1472,8 @@ and their corresponding location in the TMAP.
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
 
-figure: Figure 6. :::
+chunk: Figure 6.
+:::
 ![fig6](https://upload.wikimedia.org/wikipedia/commons/3/3f/Lotus_initiative_1_biologically_interpreted_chemical_tree.svg)
 
 ### TMAP visualizations of the chemical diversity present in LOTUS.
@@ -1486,7 +1498,8 @@ available at <https://lotus.nprod.net/post/lotus-tmap/> and archived at
 <https://doi.org/10.5281/zenodo.5801807>!number(0)[@bib101]. The figure
 is available under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_biologically_interpreted_chemical_tree.svg>.
-::: {#fig6}
+:::
+{#fig6}
 
 To explore relationships between chemistry and biology, it is possible
 to map taxonomical information such as the most reported biological
@@ -1529,7 +1542,8 @@ index](https://en.wikipedia.org/wiki/Jaccard_index) between the chemical
 class and the biological family. For more details, see
 [4_visualizing/plot_magicTree.R](https://github.com/lotusnprod/lotus-processor/blob/main/src/4_visualizing/plot_magicTree.R).
 
-figure: Figure 7. :::
+chunk: Figure 7.
+:::
 ![fig7](https://upload.wikimedia.org/wikipedia/commons/a/a9/Lotus_initiative_1_chemically_interpreted_biological_tree.svg)
 
 ### LOTUS provides new means of exploring and representing chemical and biological diversity.
@@ -1547,9 +1561,11 @@ corresponds to the number of genera reported in the family. The figure
 is vectorized and zoomable for detailed inspection and is available
 under the CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_chemically_interpreted_biological_tree.svg>.
-::: {#fig7}
+:::
+{#fig7}
 
-figure: Figure 7 supplement. :::
+chunk: Figure 7 supplement. 
+:::
 ![fig7s1](https://upload.wikimedia.org/wikipedia/commons/3/3b/Lotus_initiative_1_chemically_interpreted_biological_tree_supplement.svg)
 
 ### Distribution of *β*-sitosterol and related chemical parents among families with at least 50 reported compounds present in LOTUS.
@@ -1559,7 +1575,8 @@ Script used for the generation of each tree in the figure is the same
 as for [Figure 7](#fig7) as both figures are related. The figure is
 available under CC0 license at
 <https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_chemically_interpreted_biological_tree_supplement.svg>
-::: {#fig7s1}
+:::
+{#fig7s1}
 
 [Figure 7](#fig7) makes it possible to spot highly specific compound
 classes such as trinervitane terpenoids in the Termitidae, the rhizoxin

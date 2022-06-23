@@ -13,14 +13,13 @@ WORKDIR /home/guest
 
 # This section copies package requirement files into the image
 COPY requirements.txt requirements.txt
-COPY DESCRIPTION DESCRIPTION
+COPY packages.R packages.R
+COPY R/check_and_load_packages.R R/check_and_load_packages.R
+COPY R/log_debug.R R/log_debug.R
 
 # This section runs commands to install the packages specified in the requirement file/s
 RUN pip3 install --requirement requirements.txt \
- && bash -c "Rscript <(curl -sL https://unpkg.com/@stencila/dockta/src/install.R)"
-
-# This section copies your project's files into the image
-COPY R/log_debug.R R/log_debug.R
+ &&  bash -c "Rscript packages.R"
 
 # This sets the default user when the container is run
 USER guest

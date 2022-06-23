@@ -1160,7 +1160,27 @@ details of this process are available under
 When the chemical structure/class was reported only in one taxonomic
 grouping, it was counted as 'specific'.
 
-chunk: Table 3. 
+table: Table 3. 
+::: 
+### Distribution and specificity of chemical
+structures across four important NP reservoirs: plants, fungi, animals,
+and bacteria.
+
+When the chemical structure/class appeared only in one group and not the
+three others, they were counted as 'specific'. Chemical classes were
+attributed with NPClassifier.
+
+| Group        | Organisms | 2D Structure-Organism pairs | 2D chemical structures | Specific 2D chemical structures | Chemical classes | Specific chemical classes |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| **Plantae**  | 28,439    | 342,891                     | 95,191                 | 90,672 (95%)                    | 545              | 59 (11%)                  |
+| **Fungi**    | 4,003     | 36,950                      | 22,594                 | 20,194 (89%)                    | 417              | 19 (5%)                   |
+| **Animalia** | 2,716     | 24,114                      | 15,242                 | 11,822 (78%)                    | 455              | 14 (3%)                   |
+| **Bacteria** | 1,555     | 23,198                      | 15,895                 | 14,130 (89%)                    | 385              | 43 (11%)                  |
+
+:::
+{#table3}
+
+chunk: Table 3-1. 
 ::: 
 ### Distribution and specificity of chemical
 structures across four important NP reservoirs: plants, fungi, animals,
@@ -1339,7 +1359,7 @@ domain |>
 knitr::kable()
 ```
 :::
-{#table3}
+{#table31}
 
 ## Distributions of organisms per structure and structures per organism
 

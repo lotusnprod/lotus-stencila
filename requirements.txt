@@ -1,10 +1,12 @@
 --extra-index-url https://test.pypi.org/simple/
 cmcrameri
 faerun
+ipython
 pandas
 matplotlib
 mhfp
-numpy
+notebook
+numpy>=1.23.0
 rdkit
 scipy
 rpy2

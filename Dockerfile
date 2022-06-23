@@ -1,24 +1,26 @@
 FROM stencila/executa-midi
+
+# All installation commands are run as the root user
 USER root
 
-# Install Python dependencies
-RUN python3 -m pip install -r requirements.txt
+# It's good practice to run Docker images as a non-root user.
+# This section creates a guest user (if necessary) and sets its home directory as the default working directory.
+RUN id -u guest >/dev/null 2>&1 || useradd --create-home --uid 1000 -s /bin/bash guest
+WORKDIR /home/guest
 
-# Install R depedencies
-FROM rocker/r-apt:bionic
-RUN apt-get update && \
-  apt-get install -y libxml2-dev
+# This is a special comment to tell Dockta to manage the build from here on
+# dockta
 
-# Install binaries (see https://datawookie.netlify.com/blog/2019/01/docker-images-for-r-r-base-versus-r-apt/)
-COPY ./requirements-bin.txt .
-RUN cat requirements-bin.txt | xargs apt-get install -y -qq
+# This section copies package requirement files into the image
+COPY requirements.txt requirements.txt
+COPY DESCRIPTION DESCRIPTION
 
-# Install remaining packages from source
-RUN Rscript -e 'install.packages(c("ggalluvial","ggstar","parallel","readr>=2.0.1"))'
-RUN Rscript -e 'BiocManager::install(c("ggtree","ggtreeextra"))'
+# This section runs commands to install the packages specified in the requirement file/s
+RUN pip3 install --requirement requirements.txt \
+ && bash -c "Rscript <(curl -sL https://unpkg.com/@stencila/dockta/src/install.R)"
 
-# Clean up package registry
-RUN rm -rf /var/lib/apt/lists/*
+# This section copies your project's files into the image
+COPY R/log_debug.R R/log_debug.R
 
-# Go back to guest to run the container
+# This sets the default user when the container is run
 USER guest

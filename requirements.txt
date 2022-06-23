@@ -8,4 +8,4 @@ matplotlib
 mhfp
 rpy2
 git+https://github.com/reymond-group/map4
-tmap==1.0.8
+tmap==1.2.1

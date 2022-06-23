@@ -108,13 +108,13 @@ domain_unique_classes_specific <- domain_unique |>
 
 message("Joining everything together")
 domain <-
-  left_join(domain_unique_organisms, domain_unique_pairs) |>
-  left_join(domain_unique_structures_2D) |>
-  left_join(domain_unique_structures_2D_specific) |>
-  left_join(domain_unique_classes) |>
-  left_join(domain_unique_classes_specific) |>
-  ungroup() |>
-  mutate(
+  dplyr::left_join(domain_unique_organisms, domain_unique_pairs) |>
+  dplyr::left_join(domain_unique_structures_2D) |>
+  dplyr::left_join(domain_unique_structures_2D_specific) |>
+  dplyr::left_join(domain_unique_classes) |>
+  dplyr::left_join(domain_unique_classes_specific) |>
+  dplyr::ungroup() |>
+  dplyr::mutate(
     `Specific 2D Chemical Structures` = paste0(
       `Specific 2D Chemical Structures`,
       " (",

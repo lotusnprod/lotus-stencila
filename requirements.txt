@@ -6,7 +6,7 @@ pandas
 matplotlib
 mhfp
 notebook
-numpy>=1.23.0
+numpy==1.23.0
 rdkit
 scipy
 rpy2

@@ -1170,12 +1170,8 @@ start <- Sys.time()
 library(dplyr)
 library(readr)
 
-# path <-
-#   "https://zenodo.org/record/5794107/files/211220_frozen_metadata.csv.gz"
-path <-
-  "inst/extdata/211220_frozen_metadata.csv.gz"
 message("Loading the LOTUS")
-lotus <- readr::read_csv(file = path) |>
+lotus <- readr::read_csv(file = "211220_frozen_metadata.csv.gz") |>
   dplyr::mutate(structure_inchikey_2D = substring(text = structure_inchikey,
                                                   first = 1,
                                                   last = 14))

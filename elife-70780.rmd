@@ -1185,9 +1185,7 @@ lotus <- readr::read_csv(file = "211220_frozen_metadata.csv.gz") |>
 end <- Sys.time()
 
 message("Lotus loaded in ", format(end - start))
-```
 
-```{r include=FALSE}
 start <- Sys.time()
 
 library(dplyr)
@@ -1332,9 +1330,7 @@ domain <-
 end <- Sys.time()
 
 message("Table calculated in ", format(end - start))
-```
 
-```{r echo=FALSE}
 library(knitr)
 
 domain |>
@@ -1510,6 +1506,7 @@ is available under the CC0 license at
 chunk: Figure 6-1.
 :::
 ```{r echo=FALSE}
+library(knitr)
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
 :::

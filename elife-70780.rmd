@@ -337,6 +337,11 @@ dateAccepted:
   value: '2022-03-22'
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
+
 # Introduction
 
 ## Evolution of electronic natural products resources
@@ -1161,6 +1166,9 @@ grouping, it was counted as 'specific'.
 ```{r include=FALSE}
 start <- Sys.time()
 
+library(dplyr)
+library(readr)
+
 # path <-
 #   "https://zenodo.org/record/5794107/files/211220_frozen_metadata.csv.gz"
 path <-
@@ -1178,6 +1186,10 @@ message("Lotus loaded in ", format(end - start))
 
 ```{r include=FALSE}
 start <- Sys.time()
+
+library(dplyr)
+library(readr)
+library(splitstackshape)
 
 TAX_LEVEL_1 <- "organism_taxonomy_01domain"
 TAX_LEVEL_2 <- "organism_taxonomy_02kingdom"
@@ -1320,6 +1332,8 @@ message("Table calculated in ", format(end - start))
 ```
 
 ```{r echo=FALSE}
+library(knitr)
+
 domain |>
 knitr::kable()
 ```
@@ -1898,72 +1912,27 @@ table: Key resources table.
 ::: 
 ### Key resources table
 
-| Reagent type (species) or resource |
-Designation | Source or reference | Identifiers | Additional
-information | | ---------------------------------- |
------------------------------------ |
-------------------------------------------------------------------------------
-|
-------------------------------------------------------------------------------------------------------------------------
-|
---------------------------------------------------------------------------------------------
-| | Software, algorithm | Lotus-processor code | This work
-(<https://github.com/lotusnprod/lotus-processor>, [@bib108]) | |
-Archived at <https://doi.org/10.5281/zenodo.5802107> | | Software,
-algorithm | Lotus-web code | This work
-(<https://github.com/lotusnprod/lotus-web>, [@bib109]) | | Archived at
-<https://doi.org/10.5281/zenodo.5802119> | | Software, algorithm |
-Lotus-wikidata-interact code | This work
-(<https://github.com/lotusnprod/lotus-wikidata-interact>, [@bib110]) |
-| Archived at <https://doi.org/10.5281/zenodo.5802113> | | Software,
-algorithm | Global Names Architeture | <https://globalnames.org> |
-QID:[Q65691453](https://www.wikidata.org/wiki/Q65691453) | See
-Additional executable files | | Software, algorithm | Java |
-<https://www.java.com> | QID:[Q251](https://www.wikidata.org/wiki/Q251)
-| | | Software, algorithm | Kotlin | <https://kotlinlang.org> |
-QID:[Q3816639](https://www.wikidata.org/wiki/Q3816639) | See Kotlin
-packages | | Software, algorithm | Manubot | <https://manubot.org>
-| QID:[Q96473455](https://www.wikidata.org/wiki/Q96473455)
-RRID:[SCR_018553](https://identifiers.org/RRID/RRID:SCR_018553) |
-Repository available at <https://github.com/lotusnprod/lotus-manuscript>
-| | Software, algorithm | NPClassifier |
-<https://npclassifier.ucsd.edu> | | See
-<https://doi.org/10.1021/acs.jnatprod.1c00399> | | Software, algorithm
-| OPSIN | <https://github.com/dan2097/opsin> |
-QID:[Q26481302](https://www.wikidata.org/wiki/Q26481302) | See
-Additional executable files | | Software, algorithm | Python
-Programming Language | <https://www.python.org> |
-QID:[Q28865](https://www.wikidata.org/wiki/Q28865)
-RRID:[SCR_008394](https://identifiers.org/RRID/RRID:SCR_008394) | See
-Python packages | | Software, algorithm | R Project for Statistical
-Computing | <https://www.r-project.org> |
-QID:[Q206904](https://www.wikidata.org/wiki/Q206904)
-RRID:[SCR_001905](https://identifiers.org/RRID/RRID:SCR_001905) | See R
-packages | | Software, algorithm | Molconvert |
-<https://docs.chemaxon.com/display/docs/molconvert.md> |
-QID:[Q55377678](https://www.wikidata.org/wiki/Q55377678) | See Chemical
-structures | | Software, algorithm | Wikidata |
-<https://www.wikidata.org> |
-QID:[Q2013](https://www.wikidata.org/wiki/Q2013)
-RRID:[SCR_018492](https://identifiers.org/RRID/RRID:SCR_018492) |
-Project page
-<https://www.wikidata.org/wiki/Wikidata:WikiProject_Chemistry/Natural_products>
-| | Other | Lotus custom dictionaries | This work | | Archived at
-<https://doi.org/10.5281/zenodo.5801798> | | Other | Chemical
-identifier resolver | <https://cactus.nci.nih.gov/chemical/structure>
-| | See Chemical structures | | Other | CrossRef |
-<https://www.crossref.org> |
-QID:[Q5188229](https://www.wikidata.org/wiki/Q5188229)
-RRID:[SCR_003217](https://identifiers.org/RRID/RRID:SCR_003217) | See
-References | | Other | PubChem | <https://pubchem.ncbi.nlm.nih.gov>
-| QID:[Q278487](https://www.wikidata.org/wiki/Q278487)
-RRID:[SCR_004284](https://identifiers.org/RRID/RRID:SCR_004284) | LOTUS
-data <https://pubchem.ncbi.nlm.nih.gov/source/25132> | | Other |
-PubMed | <https://pubmed.ncbi.nlm.nih.gov> |
-QID:[Q180686](https://www.wikidata.org/wiki/Q180686)
-RRID:[SCR_004846](https://identifiers.org/RRID/RRID:SCR_004846) | See
-References | | Other | Taxonomic data sources |
-<https://resolver.globalnames.org/data_sources> | | See Translation |
+| Reagent type (species) or resource | Designation | Source or reference | Identifiers | Additional information |
+| ---------------------------------- | ----------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------|
+| Software, algorithm | Lotus-processor code | This work (<https://github.com/lotusnprod/lotus-processor>, [@bib108]) | | Archived at <https://doi.org/10.5281/zenodo.5802107> | 
+| Software, algorithm | Lotus-web code | This work (<https://github.com/lotusnprod/lotus-web>, [@bib109]) | | Archived at <https://doi.org/10.5281/zenodo.5802119> | 
+| Software, algorithm | Lotus-wikidata-interact code | This work (<https://github.com/lotusnprod/lotus-wikidata-interact>, [@bib110]) | | Archived at <https://doi.org/10.5281/zenodo.5802113> | 
+| Software, algorithm | Global Names Architeture | <https://globalnames.org> | QID:[Q65691453](https://www.wikidata.org/wiki/Q65691453) | See Additional executable files | 
+| Software, algorithm | Java | <https://www.java.com> | QID:[Q251](https://www.wikidata.org/wiki/Q251) | | 
+| Software, algorithm | Kotlin | <https://kotlinlang.org> | QID:[Q3816639](https://www.wikidata.org/wiki/Q3816639) | See Kotlin packages | 
+| Software, algorithm | Manubot | <https://manubot.org> | QID:[Q96473455](https://www.wikidata.org/wiki/Q96473455) RRID:[SCR_018553](https://identifiers.org/RRID/RRID:SCR_018553) | Repository available at <https://github.com/lotusnprod/lotus-manuscript> | 
+| Software, algorithm | NPClassifier | <https://npclassifier.ucsd.edu> | | See <https://doi.org/10.1021/acs.jnatprod.1c00399> | 
+| Software, algorithm | OPSIN | <https://github.com/dan2097/opsin> | QID:[Q26481302](https://www.wikidata.org/wiki/Q26481302) | See Additional executable files | 
+| Software, algorithm | Python Programming Language | <https://www.python.org> | QID:[Q28865](https://www.wikidata.org/wiki/Q28865) RRID:[SCR_008394](https://identifiers.org/RRID/RRID:SCR_008394) | See Python packages | 
+| Software, algorithm | R Project for Statistical Computing | <https://www.r-project.org> | QID:[Q206904](https://www.wikidata.org/wiki/Q206904) RRID:[SCR_001905](https://identifiers.org/RRID/RRID:SCR_001905) | See R packages | 
+| Software, algorithm | Molconvert | <https://docs.chemaxon.com/display/docs/molconvert.md> | QID:[Q55377678](https://www.wikidata.org/wiki/Q55377678) | See Chemical structures | 
+| Software, algorithm | Wikidata | <https://www.wikidata.org> | QID:[Q2013](https://www.wikidata.org/wiki/Q2013) RRID:[SCR_018492](https://identifiers.org/RRID/RRID:SCR_018492) | Project page <https://www.wikidata.org/wiki/Wikidata:WikiProject_Chemistry/Natural_products> | 
+| Other | Lotus custom dictionaries | This work | | Archived at <https://doi.org/10.5281/zenodo.5801798> | 
+| Other | Chemical identifier resolver | <https://cactus.nci.nih.gov/chemical/structure> | | See Chemical structures | 
+| Other | CrossRef | <https://www.crossref.org> | QID:[Q5188229](https://www.wikidata.org/wiki/Q5188229) RRID:[SCR_003217](https://identifiers.org/RRID/RRID:SCR_003217) | See References | 
+| Other | PubChem | <https://pubchem.ncbi.nlm.nih.gov> | QID:[Q278487](https://www.wikidata.org/wiki/Q278487) RRID:[SCR_004284](https://identifiers.org/RRID/RRID:SCR_004284) | LOTUS data <https://pubchem.ncbi.nlm.nih.gov/source/25132> | 
+| Other | PubMed | <https://pubmed.ncbi.nlm.nih.gov> | QID:[Q180686](https://www.wikidata.org/wiki/Q180686) RRID:[SCR_004846](https://identifiers.org/RRID/RRID:SCR_004846) | See References | 
+| Other | Taxonomic data sources | <https://resolver.globalnames.org/data_sources> | | See Translation |
 | Other | Natural Products data sources | | | See Appendix 1 | 
 
 :::

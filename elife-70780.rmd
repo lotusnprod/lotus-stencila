@@ -549,12 +549,13 @@ chunk: Table 3-1.
   
 When the chemical structure/class appeared only in one group and not the three others, they were counted as 'specific'. Chemical classes were attributed with NPClassifier.
 
-```{r include=FALSE}
-#' @width 12
-#' @height 10
-
+```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(readr)
+library(splitstackshape)
+
+TAX_LEVEL_1 <- "organism_taxonomy_01domain"
+TAX_LEVEL_2 <- "organism_taxonomy_02kingdom"
 
 message("Loading the LOTUS")
 lotus <- readr::read_csv(file = "211220_frozen_metadata.csv.gz") %>%
@@ -563,13 +564,6 @@ lotus <- readr::read_csv(file = "211220_frozen_metadata.csv.gz") %>%
                                                   last = 14))
 
 message("Lotus loaded")
-
-library(dplyr)
-library(readr)
-library(splitstackshape)
-
-TAX_LEVEL_1 <- "organism_taxonomy_01domain"
-TAX_LEVEL_2 <- "organism_taxonomy_02kingdom"
 
 message("Formatting the LOTUS")
 domain_unique <- lotus  %>%
@@ -675,8 +669,8 @@ domain_unique_classes_specific <- domain_unique %>%
                sort = TRUE)
 
 message("Joining everything together")
-domain <-
-  dplyr::left_join(domain_unique_organisms, domain_unique_pairs) %>%
+domain <- domain_unique_organisms %>%
+  dplyr::left_join(domain_unique_pairs) %>%
   dplyr::left_join(domain_unique_structures_2D) %>%
   dplyr::left_join(domain_unique_structures_2D_specific) %>%
   dplyr::left_join(domain_unique_classes) %>%
@@ -764,13 +758,7 @@ Each dot corresponds to a chemical structure. A highly specific quassinoid (NXZX
 
 chunk: Figure 6-1.
 :::
-### Test
-
-Test
-
-```{r echo=FALSE}
-#' @width 12
-#' @height 10
+```{r message=FALSE, warning=FALSE}
 library(knitr)
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```

@@ -551,6 +551,7 @@ When the chemical structure/class appeared only in one group and not the three o
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
+library(knitr)
 library(readr)
 library(splitstackshape)
 
@@ -558,6 +559,7 @@ TAX_LEVEL_1 <- "organism_taxonomy_01domain"
 TAX_LEVEL_2 <- "organism_taxonomy_02kingdom"
 
 message("Loading the LOTUS")
+#' File available at https://zenodo.org/record/5794107
 lotus <- readr::read_csv(file = "211220_frozen_metadata.csv.gz") %>%
   dplyr::mutate(structure_inchikey_2D = substring(text = structure_inchikey,
                                                   first = 1,
@@ -703,7 +705,7 @@ domain %>%
   knitr::kable()
 ```
 :::
-{#table31}
+{#table3s1}
   
 ## Distributions of organisms per structure and structures per organism
 
@@ -723,6 +725,327 @@ The number of organisms linked to the planar structure of β-sitosterol (KZJWDPN
 
 :::
 {#fig4}
+
+chunk: Figure 4-1. 
+:::
+### Distribution of 'structures per organism' and 'organisms per structure'.
+
+The number of organisms linked to the planar structure of β-sitosterol (KZJWDPNRJALLNS) and the number of chemical structures in *Arabidopsis thaliana* are two exemplary highlights. *A. thaliana* contains 687 different short InChIKeys (i.e. 2D structures) and KZJWDPNRJALLNS is reported in 3979 distinct organisms. Less than 10% of the species contain more than 80% of the structural diversity present within LOTUS. In parallel, 80% of the species present in LOTUS are linked to less than 10% of the structures. The figure is available under the CC0 license at [https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg](https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg).
+```{r message=FALSE, warning=FALSE}
+library(data.table)
+library(dplyr)
+library(plotly)
+library(readr)
+library(splitstackshape)
+
+# openDb <-
+#   readr::read_delim(
+#     file = "documented_pairs.tsv.gz",
+#     delim = "\t",
+#     col_types = cols(.default = "c"),
+#     col_select = c(
+#       "database",
+#       "organismCleaned",
+#       "organismCleaned_dbTaxoTaxonRanks",
+#       "structureCleanedInchi",
+#       "structureCleaned_inchikey2D",
+#       "referenceCleanedDoi"
+#     )
+#   ) %>%
+#   dplyr::filter(database != "custom") %>%
+#   dplyr::distinct()
+
+# pairsOpenDb_2D <- openDb %>%
+#   dplyr::filter(!is.na(organismCleaned) &
+#            !is.na(structureCleaned_inchikey2D)) %>%
+#   dplyr::distinct(structureCleaned_inchikey2D,
+#            organismCleaned,
+#            .keep_all = TRUE
+#   )
+pairsOpenDb_2D_2 <- lotus %>%
+  dplyr::filter(!is.na(organism_name) &
+           !is.na(structure_inchikey_2D)) %>%
+  dplyr::distinct(structure_inchikey_2D,
+           organism_name,
+           .keep_all = TRUE
+  )
+
+# openDbOrganism <- openDb %>%
+#   dplyr::filter(!is.na(organismCleaned)) %>%
+#   dplyr::distinct(organismCleaned)
+openDbOrganism_2 <- lotus %>%
+  dplyr::filter(!is.na(organism_name)) %>%
+  dplyr::distinct(organism_name)
+
+# openDbStructure_2D <- openDb %>%
+#   dplyr::filter(!is.na(structureCleaned_inchikey2D)) %>%
+#   dplyr::distinct(structureCleaned_inchikey2D, .keep_all = TRUE)
+openDbStructure_2D_2 <- lotus %>%
+  dplyr::filter(!is.na(structure_inchikey_2D)) %>%
+  dplyr::distinct(structure_inchikey_2D, .keep_all = TRUE)
+
+# structuresPerOrganism_2D <- pairsOpenDb_2D %>%
+#   dplyr::filter(grepl(pattern = "species", x = organismCleaned_dbTaxoTaxonRanks)) %>%
+#   dplyr::filter(grepl(pattern = " ", x = organismCleaned)) %>%
+#   dplyr::distinct(organismCleaned, structureCleaned_inchikey2D) %>%
+#   dplyr::group_by(organismCleaned) %>%
+#   dplyr::count()
+structuresPerOrganism_2D_2 <- pairsOpenDb_2D_2 %>%
+  dplyr::filter(!is.na(organism_taxonomy_09species)) %>%
+  dplyr::distinct(organism_name, structure_inchikey_2D) %>%
+  dplyr::group_by(organism_name) %>%
+  dplyr::count()
+
+# organismsPerStructure_2D <- pairsOpenDb_2D %>%
+#   dplyr::filter(grepl(pattern = "species", x = organismCleaned_dbTaxoTaxonRanks)) %>%
+#   dplyr::filter(grepl(pattern = " ", x = organismCleaned)) %>%
+#   dplyr::distinct(organismCleaned, structureCleaned_inchikey2D) %>%
+#   dplyr::group_by(structureCleaned_inchikey2D) %>%
+#   dplyr::count()
+organismsPerStructure_2D_2 <- pairsOpenDb_2D_2 %>%
+  dplyr::filter(!is.na(organism_taxonomy_09species)) %>%
+  dplyr::distinct(organism_name, structure_inchikey_2D) %>%
+  dplyr::group_by(structure_inchikey_2D) %>%
+  dplyr::count()
+
+organismsPerStructure_2D <- organismsPerStructure_2D_2
+
+structuresPerOrganism_2D <- structuresPerOrganism_2D_2
+
+organismsPerStructure_2D_cum <- organismsPerStructure_2D %>%
+  dplyr::ungroup() %>%
+  dplyr::arrange(n) %>%
+  dplyr::mutate(cum_sum = cumsum(n)) %>%
+  dplyr::mutate(
+    per_x = n / max(n) * 100,
+    per_y = cum_sum / max(cum_sum) * 100
+  ) %>%
+  dplyr::distinct(per_x, .keep_all = TRUE)
+
+structuresPerOrganism_2D_cum <- structuresPerOrganism_2D %>%
+  dplyr::ungroup() %>%
+  dplyr::arrange(n) %>%
+  dplyr::mutate(cum_sum = cumsum(n)) %>%
+  dplyr::mutate(
+    per_x = n / max(n) * 100,
+    per_y = cum_sum / max(cum_sum) * 100
+  ) %>%
+  dplyr::distinct(per_x, .keep_all = TRUE)
+
+top_structure <-
+  organismsPerStructure_2D_cum[which.max(organismsPerStructure_2D_cum$n), ]
+
+## actually third but better to ilustrate
+# top_organism <-
+#   structuresPerOrganism_2D_cum[structuresPerOrganism_2D_cum$organismCleaned == "Arabidopsis thaliana", ]
+top_organism <-
+  structuresPerOrganism_2D_cum[structuresPerOrganism_2D_cum$organism_name == "Arabidopsis thaliana", ]
+
+# a <- list(
+#   x = top_organism$per_x,
+#   y = top_organism$per_y,
+#   text = paste("<i>", top_organism$organismCleaned, "</i> \n Number of 2D structures =", top_organism$n),
+#   xref = "x",
+#   yref = "y",
+#   showarrow = TRUE,
+#   arrowhead = 1,
+#   ax = -120,
+#   ay = -30,
+#   font = list(color = "#2994D2"),
+#   arrowcolor = "#2994D2"
+# )
+a <- list(
+  x = top_organism$per_x,
+  y = top_organism$per_y,
+  text = paste("<i>", top_organism$organism_name, "</i> \n Number of 2D structures =", top_organism$n),
+  xref = "x",
+  yref = "y",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = -120,
+  ay = -30,
+  font = list(color = "#2994D2"),
+  arrowcolor = "#2994D2"
+)
+
+# b <- list(
+#   x = top_structure$per_x,
+#   y = top_structure$per_y,
+#   text = paste(
+#     top_structure$structureCleaned_inchikey2D,
+#     "\n Number of species =",
+#     top_structure$n
+#   ),
+#   xref = "x",
+#   yref = "y",
+#   showarrow = TRUE,
+#   arrowhead = 1,
+#   ax = -120,
+#   ay = -30,
+#   font = list(color = "#7CB13F"),
+#   arrowcolor = "#7CB13F"
+# )
+b <- list(
+  x = top_structure$per_x,
+  y = top_structure$per_y,
+  text = paste(
+    top_structure$structure_inchikey_2D,
+    "\n Number of species =",
+    top_structure$n
+  ),
+  xref = "x",
+  yref = "y",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = -120,
+  ay = -30,
+  font = list(color = "#7CB13F"),
+  arrowcolor = "#7CB13F"
+)
+
+c <- list(
+  x = "per species",
+  y = mean(structuresPerOrganism_2D$n),
+  text = paste("mean ", round(mean(
+    structuresPerOrganism_2D$n
+  ), 2)),
+  xref = "x2",
+  yref = "y2",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = 57,
+  ay = -40,
+  font = list(color = "#2994D2"),
+  arrowcolor = "#2994D2"
+)
+
+d <- list(
+  x = "per structure",
+  y = mean(organismsPerStructure_2D$n),
+  text = paste("mean ", round(mean(
+    organismsPerStructure_2D$n
+  ), 2)),
+  xref = "x2",
+  yref = "y2",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = -57,
+  ay = -40,
+  font = list(color = "#7CB13F"),
+  arrowcolor = "#7CB13F"
+)
+
+e <- list(
+  x = "per structure",
+  y = median(organismsPerStructure_2D$n),
+  text = paste("median ", median(organismsPerStructure_2D$n)),
+  xref = "x2",
+  yref = "y2",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = -115,
+  ay = -0,
+  font = list(color = "#7CB13F"),
+  arrowcolor = "#7CB13F"
+)
+
+f <- list(
+  x = "per species",
+  y = median(structuresPerOrganism_2D$n),
+  text = paste("median ", median(structuresPerOrganism_2D$n)),
+  xref = "x2",
+  yref = "y2",
+  showarrow = TRUE,
+  arrowhead = 1,
+  ax = -115,
+  ay = 0,
+  font = list(color = "#2994D2"),
+  arrowcolor = "#2994D2"
+)
+
+# initialize plot
+fig <- plotly::plot_ly() %>%
+  plotly::add_lines(
+    data = organismsPerStructure_2D_cum,
+    name = "species per 2D structure",
+    x = ~per_x,
+    y = ~per_y,
+    mode = "line",
+    color = I("#7CB13F"),
+    showlegend = FALSE
+  ) %>%
+  plotly::add_lines(
+    data = structuresPerOrganism_2D_cum,
+    name = "2D structures per species",
+    x = ~per_x,
+    y = ~per_y,
+    mode = "line",
+    color = I("#2994D2"),
+    showlegend = FALSE
+  ) %>%
+  plotly::add_trace(
+    data = structuresPerOrganism_2D,
+    name = "2D structures per species",
+    x = "per species",
+    y = ~n,
+    type = "box",
+    quartilemethod = "inclusive",
+    boxmean = TRUE,
+    xaxis = "x2",
+    yaxis = "y2",
+    color = I("#2994D2")
+  ) %>%
+  plotly::add_trace(
+    data = organismsPerStructure_2D,
+    name = "species per 2D structure",
+    x = "per structure",
+    y = ~n,
+    type = "box",
+    quartilemethod = "inclusive",
+    boxmean = TRUE,
+    xaxis = "x2",
+    yaxis = "y2",
+    color = I("#7CB13F")
+  ) %>%
+  plotly::layout(
+    annotations = list(a, b, c, d, e, f),
+    font = list(family = "helvetica neue", size = 18),
+    yaxis = list(title = "Cumulative % of contribution"),
+    xaxis = list(title = "% of entries"),
+    yaxis2 = list(
+      title = "Number of entries",
+      mirror = TRUE,
+      showline = TRUE,
+      zeroline = FALSE,
+      showline = FALSE,
+      showgrid = FALSE,
+      range = c(0, 30),
+      domain = c(0.2, 0.7),
+      anchor = "x2"
+    ),
+    xaxis2 = list(
+      mirror = TRUE,
+      showline = TRUE,
+      zeroline = FALSE,
+      showline = FALSE,
+      showticklabels = FALSE,
+      showgrid = FALSE,
+      domain = c(0.25, 0.95),
+      anchor = "y2"
+    ),
+    legend = list(
+      x = 0.25,
+      y = 0.175,
+      orientation = "h"
+    ),
+    width = 800,
+    height = 450
+  )
+
+fig
+```
+:::
+{#fig4s1}
 
 ## Contribution of individual electronic NP resources to LOTUS
 
@@ -763,7 +1086,7 @@ library(knitr)
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
 :::
-{#fig6}
+{#fig6s1}
 
 To explore relationships between chemistry and biology, it is possible to map taxonomical information such as the most reported biological family per chemical compound ([Figure 6B](#fig6).) or the biological specificity of chemical classes ([Figure 6C](#fig6).) on the TMAP. The biological specificity score at a given taxonomic level for a given chemical class is calculated as a [Jensen-Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence). A score of 1 suggests that compounds are highly specific, 0 that they are ubiquitous. For more details, see
 [3_analyzing/jensen_shannon_divergence.R](https://github.com/lotusnprod/lotus-processor/blob/main/src/3_analyzing/jensen_shannon_divergence.R). This visualization allows to highlight chemical classes specific to a given taxon, such as the quassinoids in the Simaroubaceae family. In this case, it is striking to see how well the compounds of a given chemical class (quassinoids) ([Figure 6A](#fig6).) and the most reported plant family per compound (Simaroubaceae) ([Figure 6B](#fig6).) overlap. This is also evidenced on [Figure 6C](#fig6). with a Jensen-Shannon divergence of 0.99 at the biological family level for quassinoids. In this plot, it is also possible to identify chemical classes that are widely spread among living organisms, such as the stigmastane steroids, which exhibit a Jensen-Shannon divergence of 0.73 at the biological family level. This means that repartition of stigmastane steroids among families is not specific. [Figure 7---figure supplement 1](#fig7s1) further supports this statement.

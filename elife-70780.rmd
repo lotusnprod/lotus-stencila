@@ -1092,7 +1092,7 @@ chunk: Figure 6-1.
 :::
 ```{r message=FALSE, warning=FALSE}
 library(knitr)
-knitr::include_url("tmap.html", height = "800px")
+knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
 :::
 {#fig6s1}

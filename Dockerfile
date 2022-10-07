@@ -1,4 +1,4 @@
-FROM stencila/executa-midi
+FROM stencila/executa-midi:latest
 
 USER root
 

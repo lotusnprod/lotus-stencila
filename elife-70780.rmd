@@ -549,7 +549,7 @@ chunk: Table 3-1.
   
 When the chemical structure/class appeared only in one group and not the three others, they were counted as 'specific'. Chemical classes were attributed with NPClassifier.
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 library(dplyr)
 library(knitr)
 library(readr)
@@ -704,6 +704,7 @@ message("Table calculated")
 domain %>%
   knitr::kable()
 ```
+
 :::
 {#table3s1}
   
@@ -732,7 +733,7 @@ chunk: Figure 4-1.
 
 The number of organisms linked to the planar structure of β-sitosterol (KZJWDPNRJALLNS) and the number of chemical structures in *Arabidopsis thaliana* are two exemplary highlights. *A. thaliana* contains 687 different short InChIKeys (i.e. 2D structures) and KZJWDPNRJALLNS is reported in 3979 distinct organisms. Less than 10% of the species contain more than 80% of the structural diversity present within LOTUS. In parallel, 80% of the species present in LOTUS are linked to less than 10% of the structures. The figure is available under the CC0 license at [https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg](https://commons.wikimedia.org/wiki/File:Lotus_initiative_1_structure_organism_distribution.svg).
 
-```{r message=FALSE, warning=FALSE}
+```{r}
 library(data.table)
 library(dplyr)
 library(plotly)
@@ -1045,6 +1046,7 @@ fig <- plotly::plot_ly() %>%
 
 fig
 ```
+
 :::
 {#fig4s1}
 
@@ -1065,9 +1067,10 @@ UpSet plots are evolved Venn diagrams, allowing to represent intersections betwe
 
 chunk: Figure 5-1.
 :::
-```{r message=FALSE, warning=FALSE}
+```{r}
 message("Needs closed data, we could provide the same figures with the open set")
 ```
+
 :::
 {#fig5s1}
 
@@ -1090,10 +1093,11 @@ Each dot corresponds to a chemical structure. A highly specific quassinoid (NXZX
 
 chunk: Figure 6-1.
 :::
-```{r message=FALSE, warning=FALSE}
+```{r}
 library(knitr)
 knitr::include_url("https://metabo-store.nprod.net/tmap/index.html", height = "800px")
 ```
+
 :::
 {#fig6s1}
 
@@ -1128,7 +1132,7 @@ Script used for the generation of each tree in the figure is the same ([src/4_vi
 
 chunk: Figure 7-2.
 :::
-```{r message=FALSE, warning=FALSE}
+```{r}
 library(data.table)
 library(dplyr)
 library(forcats)
@@ -1638,6 +1642,7 @@ ggsave(
 #   ) |> 
 #   knitr::include_graphics()
 ```
+
 :::
 {#fig7s2}
 [Figure 7](#fig7) makes it possible to spot highly specific compound classes such as  trinervitane terpenoids in the Termitidae, the rhizoxin macrolides in the Rhizopodaceae, or the quassinoids and limonoids typical, respectively, of Simaroubaceae and Meliaceae. Similarly, tendencies of more generic occurrence of NP can be observed. For example, within the fungal kingdom, Basidiomycotina appear to have a higher biosynthetic specificity toward terpenoids than other fungi, which mostly focus on polyketides production. As explained previously, [Figure 7](#fig7) is highly dependent of the data reported in literature. As also illustrated in [Figure 4](#fig4), some compounds can be over-studied among several organisms, and many organisms studied for specific compounds only. This is a direct consequence of the way the NP community reports its data actually. Having this in mind, when observed at a finer scale, down to the structure level, such chemotaxonomic representation can give valuable insights. For example, among all chemical structures, only two were found in all biological kingdoms, namely heptadecanoic acid (KEMQGTRYUADPNZ-UHFFFAOYSA-N) and *β*-carotene (OENHQHLEOONYIE-JLTXGRSLSA-N). Looking at the distribution of *β*-sitosterol (KZJWDPNRJALLNS-VJSFXXLFSA-N) within the overall biological tree, [Figure 7---figure supplement 1](#fig7s1) plots its presence/absence *versus* those of its superior chemical classifications, namely the stigmastane, steroid and terpenoid derivatives, over the same tree used in [Figure 7](#fig7). The comparison of these five chemically interpreted biological trees clearly highlights the increasing speciation of the *β*-sitosterol biosynthetic pathway in the Archaeplastida kingdom, while the superior classes are distributed across all kingdoms. [Figure 7](#fig7) is zoomable and vectorized for detailed inspection.
